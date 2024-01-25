@@ -8,21 +8,6 @@ pipeline {
             }
         }
 
-        stage('Git Version') {
-            steps {
-                script {
-                    try {
-                        tool 'Git' // Assume 'Git' is configured in Jenkins Global Tool Configuration
-                        sh 'git version'
-                    } catch (Exception ex) {
-                        echo "Failed to install or get Git version: ${ex.message}"
-                        currentBuild.result = 'FAILURE'
-                        error(ex.message)
-                    }
-                }
-            }
-        }
-
         stage('Get Maven') {
             steps {
                 script {
